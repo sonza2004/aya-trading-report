@@ -9,26 +9,43 @@
     body {
       margin: 0;
       font-family: Inter, Arial, sans-serif;
-      background: #0f1117;
+      background: #0b1020;
       color: #e6e6e6;
       line-height: 1.6;
     }
     .container {
-      width: 1100px;
+      width: 1180px;
       max-width: calc(100% - 40px);
       margin: auto;
       padding: 40px 0;
     }
     .hero {
-      background: linear-gradient(135deg,#161a22,#1f2937);
+      background: linear-gradient(135deg,#121826,#1d2940);
       border: 1px solid #2a2f3a;
-      border-radius: 24px;
-      padding: 40px;
+      border-radius: 28px;
+      padding: 42px;
       margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(99,102,241,0.15);
+      border-radius: 50%;
+      right: -120px;
+      top: -120px;
+      filter: blur(30px);
     }
     h1 {
       margin: 0 0 10px;
-      font-size: 42px;
+      font-size: 48px;
+    }
+    h2 {
+      margin-top: 0;
+      font-size: 30px;
     }
     .muted {
       color: #9aa4b2;
@@ -40,10 +57,15 @@
       margin-top: 24px;
     }
     .card {
-      background: #171b24;
-      border: 1px solid #2a2f3a;
-      border-radius: 20px;
+      background: #141b2d;
+      border: 1px solid #283247;
+      border-radius: 22px;
       padding: 24px;
+      transition: 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      border-color: #4f46e5;
     }
     table {
       width: 100%;
@@ -52,7 +74,7 @@
     }
     th, td {
       padding: 12px;
-      border-bottom: 1px solid #2a2f3a;
+      border-bottom: 1px solid #263041;
       text-align: left;
     }
     th {
@@ -63,7 +85,7 @@
     .red { color: #f87171; }
     .tag {
       display: inline-block;
-      padding: 6px 12px;
+      padding: 7px 14px;
       border-radius: 999px;
       background: #202938;
       color: #cbd5e1;
@@ -77,6 +99,68 @@
       border-left: 3px solid #4f46e5;
       background: #121826;
       border-radius: 12px;
+    }
+    .chart {
+      height: 220px;
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .bar {
+      flex: 1;
+      border-radius: 8px 8px 0 0;
+      background: linear-gradient(to top,#4f46e5,#7c3aed);
+    }
+    .stats {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .stat-box {
+      flex: 1;
+      min-width: 160px;
+      background: #111827;
+      border: 1px solid #283247;
+      border-radius: 18px;
+      padding: 18px;
+    }
+    .stat-box strong {
+      display: block;
+      font-size: 28px;
+      margin-top: 6px;
+    }
+    form {
+      margin-top: 16px;
+    }
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 12px;
+      border-radius: 12px;
+      border: 1px solid #2f3b52;
+      background: #0f172a;
+      color: white;
+    }
+    button {
+      background: linear-gradient(135deg,#4f46e5,#7c3aed);
+      color: white;
+      border: none;
+      padding: 12px 18px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: 0.2s ease;
+      font-weight: 600;
+    }
+    button:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+    #result {
+      margin-top: 12px;
+      color: #93c5fd;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -93,7 +177,35 @@
         <span class="tag">Risk Controlled</span>
         <span class="tag">AI & Tech Focus</span>
       </div>
+
+      <div class="stats">
+        <div class="stat-box">
+          Win Rate
+          <strong>63%</strong>
+        </div>
+        <div class="stat-box">
+          Monthly Return
+          <strong class="green">+12.4%</strong>
+        </div>
+        <div class="stat-box">
+          Max Drawdown
+          <strong class="red">-5.1%</strong>
+        </div>
+      </div>
     </section>
+
+    <div class="card">
+      <h2>Performance Trend</h2>
+      <div class="chart">
+        <div class="bar" style="height:40%"></div>
+        <div class="bar" style="height:55%"></div>
+        <div class="bar" style="height:70%"></div>
+        <div class="bar" style="height:50%"></div>
+        <div class="bar" style="height:80%"></div>
+        <div class="bar" style="height:95%"></div>
+        <div class="bar" style="height:75%"></div>
+      </div>
+    </div>
 
     <div class="grid">
       <div class="card">
@@ -179,6 +291,48 @@
         </div>
       </div>
     </div>
+
+    <div class="card" style="margin-top:24px;">
+      <h2>Trade Planner</h2>
+      <form id="tradeForm">
+        <input type="text" id="ticker" placeholder="Ticker Symbol" required />
+        <select id="direction">
+          <option>Long</option>
+          <option>Short</option>
+        </select>
+        <input type="number" id="entry" placeholder="Entry Price" required />
+        <button type="submit">Generate Trade Plan</button>
+      </form>
+      <div id="result"></div>
+    </div>
   </div>
+
+  <script>
+    const form = document.getElementById('tradeForm');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const ticker = document.getElementById('ticker').value;
+      const direction = document.getElementById('direction').value;
+      const entry = parseFloat(document.getElementById('entry').value);
+
+      if (!ticker || !entry) {
+        result.innerHTML = 'Please complete all fields.';
+        return;
+      }
+
+      const stopLoss = (entry * 0.97).toFixed(2);
+      const takeProfit = (entry * 1.08).toFixed(2);
+
+      result.innerHTML = `
+        <strong>${ticker}</strong> (${direction})<br>
+        Entry: $${entry}<br>
+        Stop Loss: $${stopLoss}<br>
+        Take Profit: $${takeProfit}
+      `;
+    });
+  </script>
 </body>
 </html>
