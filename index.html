@@ -9,77 +9,113 @@
     body {
       margin: 0;
       font-family: Inter, Arial, sans-serif;
-      background: #0b1020;
-      color: #e6e6e6;
+      background: radial-gradient(circle at top,#111936,#090d18 60%);
+      color: #e5e7eb;
       line-height: 1.6;
     }
     .container {
       width: 1180px;
       max-width: calc(100% - 40px);
       margin: auto;
-      padding: 40px 0;
+      padding: 40px 0 80px;
     }
     .hero {
-      background: linear-gradient(135deg,#121826,#1d2940);
-      border: 1px solid #2a2f3a;
-      border-radius: 28px;
-      padding: 42px;
-      margin-bottom: 24px;
+      background: rgba(17,24,39,0.78);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(99,102,241,0.15);
+      border-radius: 30px;
+      padding: 46px;
+      margin-bottom: 28px;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35);
     }
     .hero::after {
       content: '';
       position: absolute;
-      width: 300px;
-      height: 300px;
-      background: rgba(99,102,241,0.15);
+      width: 420px;
+      height: 420px;
+      background: rgba(99,102,241,0.12);
       border-radius: 50%;
-      right: -120px;
-      top: -120px;
-      filter: blur(30px);
+      right: -180px;
+      top: -180px;
+      filter: blur(40px);
     }
     h1 {
-      margin: 0 0 10px;
-      font-size: 48px;
+      margin: 0;
+      font-size: 54px;
+      letter-spacing: -1px;
     }
     h2 {
       margin-top: 0;
       font-size: 30px;
+      letter-spacing: -0.5px;
     }
     .muted {
-      color: #9aa4b2;
+      color: #94a3b8;
+    }
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-top: 22px;
+    }
+    .avatar {
+      width: 74px;
+      height: 74px;
+      border-radius: 50%;
+      background: linear-gradient(135deg,#4f46e5,#7c3aed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      box-shadow: 0 0 30px rgba(124,58,237,0.35);
     }
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 20px;
+      gap: 22px;
       margin-top: 24px;
     }
     .card {
-      background: #141b2d;
-      border: 1px solid #283247;
-      border-radius: 22px;
-      padding: 24px;
-      transition: 0.2s ease;
+      background: rgba(15,23,42,0.82);
+      border: 1px solid rgba(148,163,184,0.12);
+      border-radius: 24px;
+      padding: 26px;
+      transition: 0.25s ease;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
     }
     .card:hover {
-      transform: translateY(-2px);
-      border-color: #4f46e5;
+      transform: translateY(-3px);
+      border-color: rgba(99,102,241,0.45);
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 14px;
+    .stats {
+      display: flex;
+      gap: 18px;
+      margin-top: 24px;
+      flex-wrap: wrap;
     }
-    th, td {
-      padding: 12px;
-      border-bottom: 1px solid #263041;
-      text-align: left;
+    .stat-box {
+      flex: 1;
+      min-width: 170px;
+      background: rgba(17,24,39,0.85);
+      border: 1px solid rgba(148,163,184,0.12);
+      border-radius: 18px;
+      padding: 18px;
     }
-    th {
-      color: #9aa4b2;
-      font-weight: 600;
+    .stat-box strong {
+      display: block;
+      font-size: 30px;
+      margin-top: 8px;
     }
     .green { color: #4ade80; }
     .red { color: #f87171; }
@@ -87,95 +123,130 @@
       display: inline-block;
       padding: 7px 14px;
       border-radius: 999px;
-      background: #202938;
-      color: #cbd5e1;
+      background: rgba(99,102,241,0.12);
+      border: 1px solid rgba(99,102,241,0.2);
+      color: #dbeafe;
       margin-right: 8px;
-      margin-top: 8px;
+      margin-top: 10px;
       font-size: 14px;
     }
-    .journal {
-      margin-top: 12px;
-      padding: 14px;
-      border-left: 3px solid #4f46e5;
-      background: #121826;
-      border-radius: 12px;
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    th, td {
+      padding: 14px 10px;
+      border-bottom: 1px solid rgba(148,163,184,0.12);
+      text-align: left;
+    }
+    th {
+      color: #94a3b8;
+      font-weight: 600;
     }
     .chart {
       height: 220px;
       display: flex;
       align-items: flex-end;
-      gap: 10px;
-      margin-top: 20px;
+      gap: 12px;
+      margin-top: 22px;
     }
     .bar {
       flex: 1;
-      border-radius: 8px 8px 0 0;
-      background: linear-gradient(to top,#4f46e5,#7c3aed);
+      border-radius: 10px 10px 0 0;
+      background: linear-gradient(to top,#4f46e5,#8b5cf6);
+      box-shadow: 0 0 18px rgba(124,58,237,0.3);
     }
-    .stats {
-      display: flex;
-      gap: 16px;
-      margin-top: 20px;
-      flex-wrap: wrap;
+    .journal {
+      margin-top: 14px;
+      padding: 16px;
+      border-left: 3px solid #6366f1;
+      background: rgba(15,23,42,0.8);
+      border-radius: 14px;
     }
-    .stat-box {
-      flex: 1;
-      min-width: 160px;
-      background: #111827;
-      border: 1px solid #283247;
-      border-radius: 18px;
-      padding: 18px;
+    .scenario {
+      padding: 16px;
+      border-radius: 16px;
+      margin-top: 12px;
+      background: rgba(15,23,42,0.7);
+      border: 1px solid rgba(148,163,184,0.12);
     }
-    .stat-box strong {
-      display: block;
-      font-size: 28px;
-      margin-top: 6px;
-    }
-    form {
-      margin-top: 16px;
-    }
+    form { margin-top: 16px; }
     input, select {
       width: 100%;
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 12px;
-      border: 1px solid #2f3b52;
-      background: #0f172a;
+      padding: 14px;
+      margin-bottom: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(148,163,184,0.16);
+      background: rgba(15,23,42,0.9);
       color: white;
+      transition: 0.2s ease;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: #6366f1;
+      box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
     }
     button {
       background: linear-gradient(135deg,#4f46e5,#7c3aed);
       color: white;
       border: none;
-      padding: 12px 18px;
-      border-radius: 12px;
+      padding: 13px 20px;
+      border-radius: 14px;
       cursor: pointer;
+      font-weight: 700;
       transition: 0.2s ease;
-      font-weight: 600;
     }
     button:hover {
-      opacity: 0.92;
-      transform: translateY(-1px);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(124,58,237,0.35);
     }
     #result {
-      margin-top: 12px;
-      color: #93c5fd;
+      margin-top: 14px;
+      padding: 16px;
+      border-radius: 14px;
+      background: rgba(15,23,42,0.75);
+      border: 1px solid rgba(99,102,241,0.18);
+      color: #dbeafe;
+      display: none;
+    }
+    .footer-note {
+      text-align: center;
+      margin-top: 34px;
+      color: #64748b;
       font-size: 14px;
     }
   </style>
 </head>
 <body>
   <div class="container">
+
     <section class="hero">
-      <h1>Aya Trading Desk</h1>
-      <p class="muted">
-        Simulated investment research and trading plan focused on disciplined risk management,
-        swing trading setups, and long-term thematic conviction.
-      </p>
-      <div>
-        <span class="tag">Swing Trading</span>
-        <span class="tag">Risk Controlled</span>
-        <span class="tag">AI & Tech Focus</span>
+      <div class="hero-top">
+        <div>
+          <h1>Aya Trading Desk</h1>
+          <p class="muted">
+            Simulated investment analysis workspace focused on asymmetric opportunities,
+            disciplined execution, and emotional risk control.
+          </p>
+
+          <div>
+            <span class="tag">Swing Trading</span>
+            <span class="tag">AI & Semiconductors</span>
+            <span class="tag">Risk Managed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile">
+        <div class="avatar">A</div>
+        <div>
+          <strong>Aya — Independent Trader</strong><br>
+          <span class="muted">
+            Focused on high-conviction technology trends, patient entries,
+            and preserving mental capital during volatility.
+          </span>
+        </div>
       </div>
 
       <div class="stats">
@@ -201,8 +272,8 @@
         <div class="bar" style="height:55%"></div>
         <div class="bar" style="height:70%"></div>
         <div class="bar" style="height:50%"></div>
-        <div class="bar" style="height:80%"></div>
-        <div class="bar" style="height:95%"></div>
+        <div class="bar" style="height:82%"></div>
+        <div class="bar" style="height:96%"></div>
         <div class="bar" style="height:75%"></div>
       </div>
     </div>
@@ -211,18 +282,17 @@
       <div class="card">
         <h2>Market Bias</h2>
         <p>
-          Current stance: cautiously bullish. Market structure remains constructive,
-          but volatility expansion is expected around macroeconomic events.
+          Current stance remains cautiously bullish. AI infrastructure demand and liquidity conditions continue supporting large-cap technology momentum.
         </p>
       </div>
 
       <div class="card">
         <h2>Risk Rules</h2>
         <ul>
-          <li>Max risk per trade: 1.5%</li>
-          <li>Never average down blindly</li>
-          <li>Cut losses quickly if thesis breaks</li>
-          <li>Protect mental capital during drawdowns</li>
+          <li>Maximum 1.5% account risk per trade</li>
+          <li>No revenge trading after losses</li>
+          <li>Scale in slowly during uncertainty</li>
+          <li>Preserve emotional discipline first</li>
         </ul>
       </div>
 
@@ -272,9 +342,18 @@
       <div class="card">
         <h2>Investment Thesis</h2>
         <p>
-          Aya believes AI infrastructure demand will continue expanding over the next several years.
-          Preference is given to companies with pricing power, ecosystem lock-in, and strong free cash flow.
+          Aya believes the strongest long-term opportunities exist in companies controlling AI compute, cloud ecosystems, and developer infrastructure.
         </p>
+
+        <div class="scenario">
+          <strong>Bull Case</strong><br>
+          AI demand accelerates faster than expected and margins expand.
+        </div>
+
+        <div class="scenario">
+          <strong>Bear Case</strong><br>
+          Macro tightening compresses valuations and weakens liquidity.
+        </div>
       </div>
 
       <div class="card">
@@ -282,29 +361,39 @@
 
         <div class="journal">
           <strong>Monday</strong><br>
-          Reduced position sizing after volatility spike. Avoided revenge trading.
+          Reduced position sizing after volatility spike. Avoided emotional entries.
         </div>
 
         <div class="journal">
           <strong>Wednesday</strong><br>
-          Waited patiently for confirmation instead of forcing entries.
+          Waited for confirmation instead of forcing trades during uncertainty.
         </div>
       </div>
     </div>
 
     <div class="card" style="margin-top:24px;">
       <h2>Trade Planner</h2>
+
       <form id="tradeForm">
         <input type="text" id="ticker" placeholder="Ticker Symbol" required />
+
         <select id="direction">
           <option>Long</option>
           <option>Short</option>
         </select>
+
         <input type="number" id="entry" placeholder="Entry Price" required />
+
         <button type="submit">Generate Trade Plan</button>
       </form>
+
       <div id="result"></div>
     </div>
+
+    <div class="footer-note">
+      Simulated educational dashboard only — not financial advice.
+    </div>
+
   </div>
 
   <script>
@@ -314,23 +403,27 @@
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const ticker = document.getElementById('ticker').value;
+      const ticker = document.getElementById('ticker').value.trim();
       const direction = document.getElementById('direction').value;
       const entry = parseFloat(document.getElementById('entry').value);
 
-      if (!ticker || !entry) {
-        result.innerHTML = 'Please complete all fields.';
+      if (!ticker || !entry || entry <= 0) {
+        result.style.display = 'block';
+        result.innerHTML = 'Please enter a valid ticker and entry price.';
         return;
       }
 
       const stopLoss = (entry * 0.97).toFixed(2);
       const takeProfit = (entry * 1.08).toFixed(2);
+      const riskReward = ((takeProfit - entry) / (entry - stopLoss)).toFixed(2);
 
+      result.style.display = 'block';
       result.innerHTML = `
-        <strong>${ticker}</strong> (${direction})<br>
-        Entry: $${entry}<br>
+        <strong>${ticker}</strong> (${direction})<br><br>
+        Entry Price: $${entry}<br>
         Stop Loss: $${stopLoss}<br>
-        Take Profit: $${takeProfit}
+        Take Profit: $${takeProfit}<br>
+        Estimated Risk/Reward: ${riskReward}:1
       `;
     });
   </script>
