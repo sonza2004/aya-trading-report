@@ -1,2 +1,215 @@
-<!-- NEXT ITERATION PLAN PLACEHOLDER -->
-<!-- The dashboard will be upgraded to fetch real stock prices, percentage changes, and live watchlist metrics from a public API such as Yahoo Finance-compatible endpoints, Alpha Vantage, Finnhub, or TwelveData. -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aya Trading Desk</title>
+<style>
+body{
+  margin:0;
+  font-family:Inter,Arial,sans-serif;
+  background:#0b1020;
+  color:#e5e7eb;
+}
+.container{
+  width:1100px;
+  max-width:calc(100% - 40px);
+  margin:auto;
+  padding:40px 0;
+}
+.card{
+  background:#111827;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:24px;
+  margin-bottom:24px;
+}
+h1{font-size:52px;margin:0 0 12px}
+h2{margin-top:0}
+.muted{color:#94a3b8}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;
+}
+.stats{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:18px;
+  margin-top:20px;
+}
+.stat{
+  background:#0f172a;
+  border-radius:18px;
+  padding:18px;
+}
+.green{color:#4ade80}
+.red{color:#f87171}
+button{
+  background:#6d4aff;
+  color:white;
+  border:none;
+  padding:12px 18px;
+  border-radius:12px;
+  cursor:pointer;
+}
+input,select{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.1);
+  background:#0f172a;
+  color:white;
+  margin-bottom:12px;
+}
+.table{
+  width:100%;
+  border-collapse:collapse;
+}
+.table td,.table th{
+  padding:12px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  text-align:left;
+}
+#marketStatus{
+  margin-top:12px;
+  color:#93c5fd;
+}
+#result{
+  margin-top:16px;
+  padding:14px;
+  border-radius:12px;
+  background:#0f172a;
+  display:none;
+}
+</style>
+</head>
+<body>
+<div class="container">
+
+<div class="card">
+  <h1>Aya Trading Desk</h1>
+  <p class="muted">
+    Investment analysis workspace with simulated portfolio planning and real-market-data preparation.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      Win Rate<br>
+      <strong>63%</strong>
+    </div>
+
+    <div class="stat">
+      Monthly Return<br>
+      <strong class="green">+12.4%</strong>
+    </div>
+
+    <div class="stat">
+      Max Drawdown<br>
+      <strong class="red">-5.1%</strong>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h2>Watchlist</h2>
+
+    <table class="table">
+      <tr>
+        <th>Ticker</th>
+        <th>Status</th>
+      </tr>
+      <tr>
+        <td>NVDA</td>
+        <td class="green">Bullish</td>
+      </tr>
+      <tr>
+        <td>MSFT</td>
+        <td class="green">Accumulating</td>
+      </tr>
+      <tr>
+        <td>TSLA</td>
+        <td class="red">Volatile</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Market Data Integration</h2>
+
+    <p class="muted">
+      Preparing dashboard for live market feeds.
+    </p>
+
+    <button id="loadDataBtn">Load Sample Market Data</button>
+
+    <div id="marketStatus">
+      Waiting for data...
+    </div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Trade Planner</h2>
+
+  <form id="tradeForm">
+    <input type="text" id="ticker" placeholder="Ticker Symbol" required>
+
+    <select id="direction">
+      <option>Long</option>
+      <option>Short</option>
+    </select>
+
+    <input type="number" id="entry" placeholder="Entry Price" required>
+
+    <button type="submit">Generate Trade Plan</button>
+  </form>
+
+  <div id="result"></div>
+</div>
+
+</div>
+
+<script>
+const tradeForm = document.getElementById('tradeForm');
+const result = document.getElementById('result');
+const loadDataBtn = document.getElementById('loadDataBtn');
+const marketStatus = document.getElementById('marketStatus');
+
+tradeForm.addEventListener('submit', function(e){
+  e.preventDefault();
+
+  const ticker = document.getElementById('ticker').value.trim();
+  const direction = document.getElementById('direction').value;
+  const entry = parseFloat(document.getElementById('entry').value);
+
+  if(!ticker || !entry || entry <= 0){
+    result.style.display = 'block';
+    result.innerHTML = 'Please enter valid trade information.';
+    return;
+  }
+
+  const stopLoss = (entry * 0.97).toFixed(2);
+  const takeProfit = (entry * 1.08).toFixed(2);
+
+  result.style.display = 'block';
+  result.innerHTML = `
+    <strong>${ticker}</strong> (${direction})<br><br>
+    Entry: $${entry}<br>
+    Stop Loss: $${stopLoss}<br>
+    Take Profit: $${takeProfit}
+  `;
+});
+
+loadDataBtn.addEventListener('click', function(){
+  marketStatus.innerHTML = `
+    NVDA: $131.22 (+2.1%)<br>
+    MSFT: $468.30 (+0.8%)<br>
+    TSLA: $177.91 (-1.4%)<br><br>
+    <span class="muted">Sample data loaded successfully.</span>
+  `;
+});
+</script>
+</body>
+</html>
